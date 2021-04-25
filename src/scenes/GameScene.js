@@ -134,7 +134,6 @@ export default class GameScene extends Phaser.Scene
             {
                 this.bomb_spawner.spawn(player.x);
             }
-            //  A new batch of stars to collect
             this.stars_spawner.re_spawn();
         }
     }
