@@ -1,0 +1,59 @@
+{
+	"name": "phaser3-parcel-template",
+	"version": "2.0.0",
+	"description": "A simple game with phaserjs, with separate library management.",
+	"scripts":
+	{
+		"start": "parcel src/index.html -p 8000",
+		"build": "parcel build src/index.html --out-dir dist --no-source-maps"
+	},
+	"author": "micheg",
+	"keywords":
+	[
+		"phaser",
+		"phaser3",
+		"phaser-boilerplate"
+	],
+	"license": "MIT",
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/micheg/parcel_phaser3_template.git"
+	},
+	"homepage": "https://github.com/micheg/parcel_phaser3_template",
+	"devDependencies":
+	{
+		"minimist": ">=1.2.2",
+		"parcel-bundler": "^1.12.5",
+		"parcel-plugin-clean-easy": "^1.0.2",
+		"parcel-plugin-externals": "^0.5.2",
+		"parcel-plugin-html-externals": "^0.2.0",
+		"parcel-plugin-static-files-copy": "^2.4.3"
+	},
+	"dependencies":
+	{
+		"phaser": "^3.54.0"
+	},
+	"parcelCleanPaths":
+	[
+		"dist"
+	],
+	"staticFiles":
+	{
+		"staticPath":
+		[
+			{
+				"staticPath": "public",
+				"watcherGlob": "**"
+			},
+			{
+				"staticPath": "node_modules/phaser/dist/phaser.min.js"
+			}
+		]
+	},
+	"externals":
+	{
+		"phaser": "Phaser",
+		"phaser.min.js": false
+	}
+}
