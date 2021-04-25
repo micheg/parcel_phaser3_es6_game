@@ -12,6 +12,8 @@ Basic tutorial based on separate files and es6 with several additions, based on 
 
 # run
 
-- npm run dev (dev version)
+- npm run dev (dev version) or
 - npm run build (to buildup)
+
+- open with your browser: localhost: 8080
 
