@@ -3,7 +3,7 @@
 	"version": "2.0.0",
 	"description": "A simple game with phaserjs, with separate library management.",
 	"scripts": {
-		"dev": "parcel src/index.html -p 8000",
+		"dev": "parcel src/index.html -p 8080",
 		"build": "parcel build src/index.html --out-dir dist --no-source-maps"
 	},
 	"author": "micheg",

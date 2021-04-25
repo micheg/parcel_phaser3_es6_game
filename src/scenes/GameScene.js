@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import ScoreLabel from '../ui/ScoreLabel';
-import LevelLabel from '../ui/LevelLabel';
 import BombSpawner from '../utils/BombSpawner';
 
 const GROUND_KEY = 'ground';
@@ -43,8 +41,6 @@ export default class GameScene extends Phaser.Scene
         this.player = this.create_player();
         //this.camera.startFollow(this.player, true, 0.5, 0.5, 100,100);
         this.stars = this.create_stars();
-        this.score_label = this.create_score_label(16, 16, 0);
-        this.level_label = this.create_level_label(260, 16, 0);
         this.bomb_spawner = new BombSpawner(this, BOMB_KEY);
         const bombs_group = this.bomb_spawner.group
         // colliders
@@ -141,11 +137,11 @@ export default class GameScene extends Phaser.Scene
     collect_star(player, star)
     {
         star.disableBody(true, true);
-        this.score_label.add(10);
+        this.events.emit('add.score');
         if (this.stars.countActive(true) === 0)
         {
             this.level++;
-            this.level_label.add(1);
+            this.events.emit('add.level');
             for(let i=0; i< this.level; i++)
             {
                 this.bomb_spawner.spawn(player.x);
@@ -156,21 +152,6 @@ export default class GameScene extends Phaser.Scene
                 child.enableBody(true, child.x, 0, true, true)
             });
         }
-    }
-    create_score_label(x, y, score)
-    {
-        const style = { fontSize: '32px', fill: '#000' };
-        const label = new ScoreLabel(this, x, y, score, style);
-        this.add.existing(label);
-        return label;
-    }
-    create_level_label(x, y, level)
-    {
-        console.log("cl => " + x + y + level);
-        const style = { fontSize: '32px', fill: '#000' };
-        const label = new LevelLabel(this, x, y, level, style);
-        this.add.existing(label);
-        return label;
     }
     hit_bomb(player, bomb)
     {
