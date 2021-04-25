@@ -5,3 +5,13 @@ Basic tutorial based on separate files and es6 with several additions, based on 
 
 - phaser3 tutorial [https://phaser.io/tutorials/making-your-first-phaser-3-game/part1] (with many modifications.)
 - my template [https://github.com/micheg/parcel_phaser3_template_lib]
+
+# install
+
+- npm install
+
+# run
+
+- npm run dev (dev version)
+- npm run build (to buildup)
+
