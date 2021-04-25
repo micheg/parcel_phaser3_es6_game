@@ -30,4 +30,17 @@ export default class BombSpawner
         this._group = stars;
         return stars;
     }
+
+    count_active()
+    {
+        return this._group.countActive(true);
+    }
+
+    re_spawn()
+    {
+        this._group.children.iterate((child) =>
+        {
+            child.enableBody(true, child.x, 0, true, true)
+        });
+    }
 }

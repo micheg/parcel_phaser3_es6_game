@@ -126,7 +126,7 @@ export default class GameScene extends Phaser.Scene
     {
         star.disableBody(true, true);
         this.events.emit('add.score');
-        if (this.stars.countActive(true) === 0)
+        if (this.stars_spawner.count_active() === 0)
         {
             this.level++;
             this.events.emit('add.level');
@@ -135,10 +135,7 @@ export default class GameScene extends Phaser.Scene
                 this.bomb_spawner.spawn(player.x);
             }
             //  A new batch of stars to collect
-            this.stars.children.iterate((child) =>
-            {
-                child.enableBody(true, child.x, 0, true, true)
-            });
+            this.stars_spawner.re_spawn();
         }
     }
     hit_bomb(player, bomb)
