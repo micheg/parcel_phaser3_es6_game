@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import BombSpawner from '../utils/BombSpawner';
+import StarsSpawner from '../utils/StarsSpawner';
 
 const GROUND_KEY = 'ground';
 const DUDE_KEY = 'dude';
@@ -40,9 +41,10 @@ export default class GameScene extends Phaser.Scene
         const platforms = this.create_platforms()
         this.player = this.create_player();
         //this.camera.startFollow(this.player, true, 0.5, 0.5, 100,100);
-        this.stars = this.create_stars();
+        this.stars_spawner = new StarsSpawner(this, STAR_KEY);
         this.bomb_spawner = new BombSpawner(this, BOMB_KEY);
         const bombs_group = this.bomb_spawner.group
+        this.stars = this.stars_spawner.spawn();
         // colliders
         this.physics.add.collider(this.player, platforms);
         this.physics.add.collider(this.stars, platforms);
@@ -119,20 +121,6 @@ export default class GameScene extends Phaser.Scene
             repeat: -1
         });
         return player;
-    }
-    create_stars()
-    {
-        const stars = this.physics.add.group(
-        {
-            key: STAR_KEY,
-            repeat: 11,
-            setXY: { x: 12, y: 0, stepX: 70 }
-        });
-        stars.children.iterate((child) =>
-        {
-            child.setBounceY(Phaser.Math.FloatBetween(0.5, 0.9));
-        });
-        return stars
     }
     collect_star(player, star)
     {
